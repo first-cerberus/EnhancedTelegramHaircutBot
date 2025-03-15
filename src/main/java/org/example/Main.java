@@ -20,6 +20,7 @@ public class Main {
         adminIds = Arrays.stream(adminIdsStr.split(","))
                 .map(Long::parseLong)
                 .collect(Collectors.toSet());
+        
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(new HaircutBot(botUsername, botToken, adminIds));
@@ -28,4 +29,5 @@ public class Main {
             e.printStackTrace();
         }
     }
+
 }

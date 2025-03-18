@@ -560,6 +560,7 @@ public class HaircutBot extends TelegramLongPollingBot {
                 // Если нашли запись для этого клиента, удаляем её
                 if (firstName.equals(clientName)) {
                     appointmentIterator.remove();
+                    saveDataToFile();
                     appointmentRemoved = true;
                     break; // Прерываем после удаления, так как клиент может быть только один
                 }
@@ -729,6 +730,7 @@ public class HaircutBot extends TelegramLongPollingBot {
             // Удаляем запись
             if (appointments.remove(dateTime) != null) {
                 sendTextMessage(chatId, "✅ Запис успішно видалено!");
+                saveDataToFile();
                 // Если больше нет записей, удаляем барбера из списка
                 if (appointments.isEmpty()) {
                     bookings.remove(barberName);
